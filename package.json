@@ -1,5 +1,5 @@
 {
-  "name": "youtube-mp3-downloader",
+  "name": "youtube-mp3",
   "version": "0.4.5",
   "description": "A minimal Electron application for downloading MP3s from YouTube",
   "main": "main.js",
@@ -8,13 +8,12 @@
     "package": "electron-builder build",
     "publish": "electron-builder build --publish always"
   },
-  "repository": "github:hradilserhii/youtube-to-mp3-downloader",
+  "repository": "github:hradilserhii/youtube-mp3",
   "license": "MIT",
   "keywords": [
     "Electron",
     "youtube",
     "mp3",
-    "downloader"
   ],
   "author": {
     "name": "HradilSerhii",
@@ -36,7 +35,7 @@
     "ytpl": "^2.3.0"
   },
   "build": {
-    "productName": "Youtube to MP3 Downloader",
+    "productName": "Youtube MP3",
     "copyright": "Copyright (c) 2023 HradilSerhii",
     "asarUnpack": [
       "**/app/node_modules/ffmpeg-static/*"
@@ -76,7 +75,7 @@
     "publish": {
       "provider": "github",
       "owner": "hradilserhii",
-      "repo": "youtube-mp3-downloader"
+      "repo": "youtube-mp3"
     }
   }
 }
