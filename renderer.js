@@ -1,4 +1,4 @@
-const {ipcRenderer} = require("electron");
+const { ipcRenderer } = require("electron");
 
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
@@ -31,7 +31,7 @@ document.getElementById('download-button').addEventListener("click", function() 
         params.coverSearchTitle = document.getElementById('cover-search-url').value;
     }
 
-    ipcRenderer.send('download-invoked', params)
+    ipcRenderer.send('download-invoked', params);
 });
 
 ipcRenderer.on('download-status', (event, status, songTitle) => {
@@ -54,7 +54,7 @@ ipcRenderer.on('show-data', (event, arg) => {
 });
 
 ipcRenderer.on('playlist-status', (event, status) => {
-        document.getElementById('playlist').innerText = status;
+    document.getElementById('playlist').innerText = status;
 });
 
 document.getElementById('cover-search').addEventListener('click', function () {
@@ -71,20 +71,20 @@ ipcRenderer.on('theme-switch', (event, theme) => {
 
     if (theme === 'Dark' && !hasDark) {
         document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', theme)
+        localStorage.setItem('theme', theme);
     } else if (theme === 'Light' && hasDark) {
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('theme', theme)
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', theme);
     }
 });
 
 // updating application
-ipcRenderer.on('update_downloaded', (info, event) => {
+ipcRenderer.on('update_downloaded', (event, info) => {
     ipcRenderer.removeAllListeners('update_downloaded');
 
     toggleModal();
-    document.getElementById('update-version').innerText = event.tag;
-    document.getElementById('changelog').innerHTML = event.releaseNotes;
+    document.getElementById('update-version').innerText = info.tag;
+    document.getElementById('changelog').innerHTML = info.releaseNotes;
 });
 
 document.getElementById('accept-update').addEventListener('click', function () {
@@ -101,32 +101,31 @@ ipcRenderer.on('download-progress', (event, data) => {
     ipcRenderer.send('download-progress', data);
 });
 
+const overlay = document.querySelector('.modal-overlay');
+overlay.addEventListener('click', toggleModal);
 
-const overlay = document.querySelector('.modal-overlay')
-overlay.addEventListener('click', toggleModal)
-
-let closeModal = document.querySelectorAll('.modal-close')
+let closeModal = document.querySelectorAll('.modal-close');
 for (let i = 0; i < closeModal.length; i++) {
-    closeModal[i].addEventListener('click', toggleModal)
+    closeModal[i].addEventListener('click', toggleModal);
 }
 
 document.onkeydown = function(evt) {
-    evt = evt || window.event
-    let isEscape = false
+    evt = evt || window.event;
+    let isEscape = false;
     if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
     } else {
-        isEscape = (evt.keyCode === 27)
+        isEscape = (evt.keyCode === 27);
     }
     if (isEscape && document.body.classList.contains('modal-active')) {
-        toggleModal()
+        toggleModal();
     }
 };
 
-function toggleModal () {
-    const body = document.querySelector('body')
-    const modal = document.querySelector('.modal')
-    modal.classList.toggle('opacity-0')
-    modal.classList.toggle('pointer-events-none')
-    body.classList.toggle('modal-active')
+function toggleModal() {
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.modal');
+    modal.classList.toggle('opacity-0');
+    modal.classList.toggle('pointer-events-none');
+    body.classList.toggle('modal-active');
 }
