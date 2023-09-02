@@ -7,7 +7,7 @@
 
 
 # Clone this repository
-git clone https://github.com/fajicbenjamin/youtube-to-mp3-downloader.git
+git clone https://github.com/HradilSerhii/Youtube-MP3.git
 
 # Go into the repository
 cd youtube-to-mp3-downloader
