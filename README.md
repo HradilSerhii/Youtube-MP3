@@ -6,5 +6,20 @@
 
 
 
-## Disclaimer
-This app shouldn't be used on copyrighted material.
+# Clone this repository
+git clone https://github.com/fajicbenjamin/youtube-to-mp3-downloader.git
+
+# Go into the repository
+cd youtube-to-mp3-downloader
+
+# Install dependencies
+npm install
+
+# Compile Tailwind
+npx tailwindcss -o tailwind.css --minify
+
+# Run the app
+npm start
+
+# To package it for Windows or macOS
+npm run package
